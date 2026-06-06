@@ -29,3 +29,20 @@ export function contentSecurityPolicy(isDev: boolean): string {
 
   return directives.join("; ");
 }
+
+/** Relaxed CSP for static admin panel (Convex Auth, Google OAuth, fonts). */
+export function adminContentSecurityPolicy(): string {
+  return [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "img-src 'self' data: blob: https:",
+    "font-src 'self' data: https://fonts.gstatic.com",
+    "connect-src 'self' https://*.convex.cloud https://*.convex.site https://accounts.google.com",
+    "frame-src https://accounts.google.com",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self' https://accounts.google.com",
+    "object-src 'none'",
+  ].join("; ");
+}

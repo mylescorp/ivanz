@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/admin/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -36,6 +37,7 @@ admin/js/config.js
 
 # convex local deployment state
 .convex/
+convex/_generated/
 
 # vercel
 .vercel
@@ -46,3 +48,5 @@ next-env.d.ts
 
 # handoff
 HANDOFF.md
+
+.vercel

@@ -1,15 +1,23 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { contentSecurityPolicy, securityHeaders } from "@/lib/security/headers";
+import {
+  adminContentSecurityPolicy,
+  contentSecurityPolicy,
+  securityHeaders,
+} from "@/lib/security/headers";
 
 export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   const isDev = process.env.NODE_ENV === "development";
+  const isAdmin = request.nextUrl.pathname.startsWith("/admin");
 
   Object.entries(securityHeaders).forEach(([key, value]) => {
     response.headers.set(key, value);
   });
 
-  response.headers.set("Content-Security-Policy", contentSecurityPolicy(isDev));
+  response.headers.set(
+    "Content-Security-Policy",
+    isAdmin ? adminContentSecurityPolicy() : contentSecurityPolicy(isDev),
+  );
 
   if (!isDev) {
     response.headers.set(
