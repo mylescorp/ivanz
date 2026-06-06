@@ -9,10 +9,11 @@ import { cn } from "@/lib/utils";
 interface ProjectCardProps {
   project: Project;
   onSelect: (project: Project) => void;
+  imageIndex?: number;
   className?: string;
 }
 
-export function ProjectCard({ project, onSelect, className }: ProjectCardProps) {
+export function ProjectCard({ project, onSelect, imageIndex = 0, className }: ProjectCardProps) {
   return (
     <button
       type="button"
@@ -26,6 +27,7 @@ export function ProjectCard({ project, onSelect, className }: ProjectCardProps) 
         title={project.title}
         category={project.category}
         images={project.images}
+        imageIndex={imageIndex}
         className="aspect-[4/3] w-full"
       />
       <div className="p-5">

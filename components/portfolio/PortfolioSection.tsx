@@ -21,7 +21,7 @@ export function PortfolioSection() {
     <>
       <SectionHeading
         title="Our Work"
-        subtitle={`${projects.length} civil engineering projects delivered across Eastern Uganda. Select a category to filter.`}
+        subtitle={`${projects.length} civil engineering projects delivered across Africa. Select a category to filter.`}
       />
 
       <div className="mb-10 flex flex-wrap justify-center gap-2">
@@ -47,9 +47,13 @@ export function PortfolioSection() {
         role="list"
         aria-live="polite"
       >
-        {filteredProjects.map((project) => (
+        {filteredProjects.map((project, index) => (
           <div key={project.slug} role="listitem">
-            <ProjectCard project={project} onSelect={setSelectedProject} />
+            <ProjectCard
+              project={project}
+              imageIndex={index}
+              onSelect={setSelectedProject}
+            />
           </div>
         ))}
       </div>

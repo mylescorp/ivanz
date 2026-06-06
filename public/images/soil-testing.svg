@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-label="Soil Testing">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F1B33"/>
+      <stop offset="100%" stop-color="#1A2744"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B6914" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#D4831A" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1000" fill="url(#bg)"/>
+  <rect x="0" y="820" width="1400" height="180" fill="#0A1220" opacity="0.5"/>
+  <circle cx="1100" cy="200" r="120" fill="url(#accent)" opacity="0.25"/>
+  <circle cx="200" cy="150" r="80" fill="#8B6914" opacity="0.15"/>
+  <path d="M 550 220 L 850 220 L 900 750 L 500 750 Z M 620 320 L 780 320 L 760 420 L 640 420 Z M 580 500 L 820 500 L 800 650 L 600 650 Z" fill="url(#accent)" opacity="0.85"/>
+  <text x="80" y="920" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="48" font-weight="700">Soil Testing</text>
+  <text x="80" y="970" fill="#D4831A" font-family="Arial, sans-serif" font-size="24" font-weight="500">IvanZ Construction</text>
+</svg>

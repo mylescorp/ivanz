@@ -4,10 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, HardHat } from "lucide-react";
 import { useState } from "react";
-import { navLinks, siteConfig } from "@/lib/config";
+import { InquiryTrigger } from "@/components/whatsapp/InquiryTrigger";
+import { navLinks } from "@/lib/config";
 import { cn } from "@/lib/utils";
 
-export function Header() {
+interface HeaderProps {
+  siteName: string;
+  location: string;
+}
+
+export function Header({ siteName, location }: HeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -20,9 +26,9 @@ export function Header() {
           </div>
           <div>
             <p className="font-heading text-lg font-bold leading-tight text-navy">
-              {siteConfig.name}
+              {siteName}
             </p>
-            <p className="text-xs text-muted">{siteConfig.location}</p>
+            <p className="text-xs text-muted">{location}</p>
           </div>
         </Link>
 
@@ -43,12 +49,12 @@ export function Header() {
           ))}
         </nav>
 
-        <Link
-          href="/contact"
+        <InquiryTrigger
+          prefill={{ source: "Header" }}
           className="hidden rounded-lg bg-gold px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gold/90 md:inline-flex"
         >
           Get a Quote
-        </Link>
+        </InquiryTrigger>
 
         <button
           type="button"
@@ -78,13 +84,12 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-lg bg-gold px-3 py-3 text-center text-sm font-semibold text-white"
+            <InquiryTrigger
+              prefill={{ source: "Header Mobile" }}
+              className="mt-2 w-full rounded-lg bg-gold px-3 py-3 text-center text-sm font-semibold text-white"
             >
               Get a Quote
-            </Link>
+            </InquiryTrigger>
           </div>
         </nav>
       )}

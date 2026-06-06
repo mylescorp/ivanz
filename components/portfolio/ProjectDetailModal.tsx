@@ -10,6 +10,7 @@ import {
   MapPin,
   X,
 } from "lucide-react";
+import { InquiryButton } from "@/components/ui/InquiryButton";
 import {
   getCategoryLabel,
   type Project,
@@ -60,7 +61,13 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
   const hasCarousel = project.images.length > 1;
   const activeImage = project.images[imageIndex];
-  const inquiryUrl = `/contact?service=${project.category === "structural" ? "structural" : project.category}&projectName=${encodeURIComponent(project.title)}&notes=${encodeURIComponent(`Interested in a project similar to: ${project.title}`)}&source=Portfolio`;
+  const inquiryPrefill = {
+    service: project.category === "structural" ? "structural" : project.category,
+    projectName: project.title,
+    notes: `Interested in a project similar to: ${project.title}`,
+    location: project.location,
+    source: "Portfolio",
+  };
 
   return (
     <div
@@ -185,13 +192,10 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
           </ul>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href={inquiryUrl}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-whatsapp/90"
-            >
+            <InquiryButton prefill={inquiryPrefill} className="px-6 py-3">
               Inquire about similar project
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </InquiryButton>
             <Link
               href={`/portfolio/${project.slug}`}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-grey-light px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-grey-light"

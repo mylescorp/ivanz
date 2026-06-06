@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { AlertTriangle, Calculator, ArrowRight } from "lucide-react";
+import { AlertTriangle, ArrowRight, Calculator } from "lucide-react";
+import { InquiryTrigger } from "@/components/whatsapp/InquiryTrigger";
 import { services } from "@/lib/data/services";
 import {
   calculateCostRange,
@@ -31,9 +32,13 @@ export function CostEstimator() {
     );
   };
 
-  const quoteUrl = `/contact?service=${service}&scale=${encodeURIComponent(
-    scaleOptions.find((item) => item.id === scale)?.description ?? scale,
-  )}&budget=${encodeURIComponent(result.formatted)}&source=Cost%20Estimator`;
+  const quotePrefill = {
+    service,
+    scale: scaleOptions.find((item) => item.id === scale)?.description ?? scale,
+    budget: result.formatted,
+    location: regionOptions.find((item) => item.id === region)?.label ?? region,
+    source: "Cost Estimator",
+  };
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -195,13 +200,13 @@ export function CostEstimator() {
           </p>
         </div>
 
-        <Link
-          href={quoteUrl}
+        <InquiryTrigger
+          prefill={quotePrefill}
           className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-whatsapp px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-whatsapp/90 sm:w-auto"
         >
           Get Formal Quote
           <ArrowRight className="h-4 w-4" />
-        </Link>
+        </InquiryTrigger>
       </div>
     </div>
   );

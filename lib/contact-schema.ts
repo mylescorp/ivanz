@@ -1,18 +1,17 @@
 import { z } from "zod";
 
 export const contactFormSchema = z.object({
-  name: z.string().min(2, "Enter your full name"),
-  phone: z.string().min(10, "Enter a valid phone number"),
+  name: z.string().min(2, "Please enter your name"),
+  dialCode: z.string().min(1),
+  phone: z.string().min(6, "Please enter your phone number"),
   email: z.string().email("Enter a valid email").optional().or(z.literal("")),
   company: z.string().optional(),
-  location: z.string().min(2, "Enter your district or location"),
-  service: z.string().min(1, "Select a service"),
-  projectName: z.string().optional(),
-  siteLocation: z.string().optional(),
+  country: z.string().min(1, "Please select your country"),
+  service: z.string().min(1, "Please select a service"),
+  location: z.string().optional(),
   scale: z.string().optional(),
   budget: z.string().optional(),
-  startDate: z.string().optional(),
-  urgency: z.enum(["urgent", "standard", "planning"]),
+  urgency: z.string().optional(),
   notes: z.string().optional(),
   source: z.string().optional(),
 });

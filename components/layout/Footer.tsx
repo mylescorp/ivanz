@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HardHat, MapPin, Phone } from "lucide-react";
+import { FooterWhatsAppLink } from "@/components/layout/FooterWhatsAppLink";
 import { navLinks, siteConfig } from "@/lib/config";
 
 export function Footer() {
@@ -58,14 +59,7 @@ export function Footer() {
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-              <a
-                href={`https://wa.me/${siteConfig.whatsappPrimary}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-white"
-              >
-                {siteConfig.whatsappDisplayPrimary}
-              </a>
+              <FooterWhatsAppLink />
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
@@ -79,8 +73,8 @@ export function Footer() {
             Service Area
           </h3>
           <p className="text-sm leading-relaxed text-white/70">
-            Based in Busia District with project delivery across Eastern Uganda
-            including road construction, structural engineering, drainage, and
+            Based in Uganda with project delivery across {siteConfig.serviceArea}{" "}
+            — including road construction, structural engineering, drainage, and
             land surveying.
           </p>
         </div>
@@ -89,6 +83,14 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-white/50 md:flex-row md:px-6">
           <p>© {year} {siteConfig.name}. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:justify-end">
+            <Link href="/privacy" className="transition-colors hover:text-white/80">
+              Privacy
+            </Link>
+            <Link href="/cookies" className="transition-colors hover:text-white/80">
+              Cookies
+            </Link>
+          </div>
           <p>
             Built by{" "}
             <a

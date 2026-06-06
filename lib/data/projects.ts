@@ -288,10 +288,10 @@ export const projects: Project[] = [
     images: [],
   },
   {
-    slug: "eastern-uganda-road-supervision",
-    title: "Eastern Uganda Road Supervision",
+    slug: "east-africa-road-supervision",
+    title: "East Africa Road Supervision",
     category: "project-management",
-    location: "Eastern Uganda",
+    location: "East Africa",
     completedDate: "2023-07",
     scope: "Site supervision for 6 km district road",
     summary:

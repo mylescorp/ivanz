@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
+import { PortfolioInquiryButton } from "@/components/portfolio/PortfolioInquiryButton";
 import { ProjectVisual } from "@/components/portfolio/ProjectVisual";
 import {
   getCategoryLabel,
@@ -40,7 +41,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  const inquiryUrl = `/contact?service=${project.category === "structural" ? "structural" : project.category}&projectName=${encodeURIComponent(project.title)}&notes=${encodeURIComponent(`Interested in a project similar to: ${project.title}`)}&source=Portfolio`;
+  const inquiryPrefill = {
+    service: project.category === "structural" ? "structural" : project.category,
+    projectName: project.title,
+    notes: `Interested in a project similar to: ${project.title}`,
+    source: "Portfolio",
+  };
 
   return (
     <>
@@ -101,13 +107,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 ))}
               </ul>
 
-              <Link
-                href={inquiryUrl}
-                className="mt-10 inline-flex items-center gap-2 rounded-lg bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-whatsapp/90"
-              >
-                Inquire about similar project
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <PortfolioInquiryButton
+                prefill={inquiryPrefill}
+                className="mt-10 px-6 py-3"
+              />
             </div>
           </div>
         </div>

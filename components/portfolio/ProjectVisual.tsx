@@ -8,6 +8,7 @@ import {
   Layers,
   Route,
 } from "lucide-react";
+import { getPortfolioImage } from "@/lib/data/images";
 import {
   getProjectGradient,
   type PortfolioCategory,
@@ -29,6 +30,7 @@ interface ProjectVisualProps {
   title: string;
   category: PortfolioCategory;
   images: ProjectImage[];
+  imageIndex?: number;
   className?: string;
   priority?: boolean;
 }
@@ -37,13 +39,14 @@ export function ProjectVisual({
   title,
   category,
   images,
+  imageIndex = 0,
   className,
   priority = false,
 }: ProjectVisualProps) {
   const Icon = iconMap[category];
-  const cover = images[0];
+  const cover = images[0] ?? getPortfolioImage(category, imageIndex);
 
-  if (cover) {
+  if (cover?.src) {
     return (
       <div className={cn("relative overflow-hidden bg-navy", className)}>
         <Image

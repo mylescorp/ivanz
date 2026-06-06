@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
 import { projects } from "@/lib/data/projects";
+import { services } from "@/lib/data/services";
 
 const routes = [
   "",
@@ -11,6 +12,8 @@ const routes = [
   "/contact",
   "/faq",
   "/downloads",
+  "/privacy",
+  "/cookies",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -28,5 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...projectPages];
+  const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
+    url: `${siteConfig.url}/services/${service.id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
+  return [...staticPages, ...servicePages, ...projectPages];
 }

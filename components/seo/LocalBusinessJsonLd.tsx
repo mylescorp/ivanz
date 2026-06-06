@@ -15,7 +15,7 @@ export function LocalBusinessJsonLd() {
     address: {
       "@type": "PostalAddress",
       addressLocality: "Busia District",
-      addressRegion: "Eastern Uganda",
+      addressRegion: "Uganda",
       addressCountry: "UG",
     },
     sameAs: [`https://wa.me/${siteConfig.whatsappPrimary}`],

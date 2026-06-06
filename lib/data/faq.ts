@@ -7,7 +7,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What areas does IvanZ Construction serve?",
     answer:
-      "IvanZ Construction is based in Busia District, Eastern Uganda, and serves clients across the Eastern Uganda region including surrounding districts and project sites.",
+      "IvanZ Construction is headquartered in Uganda and serves clients across Africa, including Uganda as a whole and neighbouring regions.",
   },
   {
     question: "How do I request a quote for my project?",

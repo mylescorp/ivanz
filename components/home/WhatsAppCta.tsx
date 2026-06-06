@@ -1,7 +1,9 @@
-import Link from "next/link";
+"use client";
+
 import { MessageCircle } from "lucide-react";
-import { siteConfig } from "@/lib/config";
 import { PromptCards } from "@/components/home/PromptCards";
+import { InquiryButton } from "@/components/ui/InquiryButton";
+import { siteConfig } from "@/lib/config";
 
 export function WhatsAppCta() {
   return (
@@ -22,13 +24,14 @@ export function WhatsAppCta() {
             <span className="hidden sm:inline">·</span>
             <span>Response within {siteConfig.stats.responseTime}</span>
           </div>
-          <Link
-            href="/contact"
-            className="mt-8 inline-flex animate-pulse items-center gap-2 rounded-lg bg-whatsapp px-8 py-4 text-base font-semibold text-white transition-all hover:animate-none hover:bg-whatsapp/90"
+          <InquiryButton
+            prefill={{ source: "Homepage CTA" }}
+            variant="whatsapp"
+            className="mt-8 animate-pulse text-base hover:animate-none"
           >
             <MessageCircle className="h-5 w-5" />
             Send Project Inquiry
-          </Link>
+          </InquiryButton>
         </div>
 
         <div className="mt-16">

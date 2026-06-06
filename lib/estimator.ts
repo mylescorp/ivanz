@@ -1,7 +1,13 @@
 import type { ServiceCategory } from "@/lib/data/services";
 
 export type ProjectScale = "small" | "medium" | "large" | "enterprise";
-export type ProjectRegion = "busia" | "eastern" | "central" | "other";
+export type ProjectRegion =
+  | "busia"
+  | "africa"
+  | "uganda"
+  | "east-africa"
+  | "central"
+  | "other";
 
 export interface EstimatorInput {
   service: ServiceCategory;
@@ -66,7 +72,9 @@ const baseRates: Record<
 
 const regionMultipliers: Record<ProjectRegion, number> = {
   busia: 1.0,
-  eastern: 1.05,
+  africa: 1.2,
+  uganda: 1.05,
+  "east-africa": 1.08,
   central: 1.15,
   other: 1.1,
 };
@@ -114,7 +122,9 @@ export const scaleOptions = [
 
 export const regionOptions = [
   { id: "busia" as const, label: "Busia District" },
-  { id: "eastern" as const, label: "Eastern Uganda" },
+  { id: "africa" as const, label: "Africa (general)" },
+  { id: "uganda" as const, label: "Uganda" },
+  { id: "east-africa" as const, label: "East Africa" },
   { id: "central" as const, label: "Central Uganda" },
   { id: "other" as const, label: "Other Region" },
 ];

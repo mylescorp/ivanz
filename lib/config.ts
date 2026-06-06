@@ -10,12 +10,12 @@ export const siteConfig = {
   name: requireEnv("NEXT_PUBLIC_SITE_NAME", "IvanZ Construction"),
   url: requireEnv("NEXT_PUBLIC_SITE_URL", "http://localhost:3000"),
   description:
-    "Professional civil engineering and construction services in Busia District and across Eastern Uganda.",
+    "Professional civil engineering and construction services across Africa. Headquartered in Uganda with project delivery throughout the continent.",
   location: requireEnv(
     "NEXT_PUBLIC_COMPANY_LOCATION",
-    "Busia District, Eastern Uganda",
+    "Busia District, Uganda",
   ),
-  serviceArea: requireEnv("NEXT_PUBLIC_SERVICE_AREA", "Eastern Uganda"),
+  serviceArea: requireEnv("NEXT_PUBLIC_SERVICE_AREA", "Africa"),
   whatsappPrimary: requireEnv("NEXT_PUBLIC_WHATSAPP_PRIMARY", "256787768534"),
   whatsappSecondary: requireEnv(
     "NEXT_PUBLIC_WHATSAPP_SECONDARY",
@@ -23,10 +23,11 @@ export const siteConfig = {
   ),
   whatsappDisplayPrimary: "+256 787 768 534",
   whatsappDisplaySecondary: "+256 702 195 377",
-  tagline: "Building Eastern Uganda with precision and integrity",
+  tagline:
+    "Building Africa with precision and integrity — from Uganda to the wider continent",
   stats: {
     projects: "47+",
-    regions: "5",
+    regions: "Africa",
     responseTime: "2 hrs",
   },
 } as const;

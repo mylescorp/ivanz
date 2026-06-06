@@ -1,100 +1,62 @@
 import { siteConfig } from "@/lib/config";
-import type { ServiceCategory } from "@/lib/data/services";
 
 export interface InquiryFormData {
   name: string;
+  dialCode: string;
   phone: string;
   email?: string;
   company?: string;
-  location: string;
-  service: ServiceCategory | "";
-  projectName?: string;
-  siteLocation?: string;
+  country: string;
+  service: string;
+  location?: string;
   scale?: string;
   budget?: string;
-  startDate?: string;
-  urgency: "urgent" | "standard" | "planning";
+  urgency?: string;
   notes?: string;
   source?: string;
 }
 
-export function formatPhoneInput(value: string): string {
-  const digits = value.replace(/\D/g, "");
-  if (digits.length === 0) return "";
-
-  let normalized = digits;
-  if (normalized.startsWith("256")) {
-    normalized = normalized.slice(3);
-  } else if (normalized.startsWith("0")) {
-    normalized = normalized.slice(1);
-  }
-
-  normalized = normalized.slice(0, 9);
-  const parts = [
-    normalized.slice(0, 3),
-    normalized.slice(3, 6),
-    normalized.slice(6, 9),
-  ].filter(Boolean);
-
-  return `+256 ${parts.join(" ")}`.trim();
+export function formatPhoneDigits(value: string): string {
+  return value.replace(/\D/g, "").slice(0, 15);
 }
 
-export function isValidUgandaPhone(phone: string): boolean {
+export function isValidPhone(phone: string): boolean {
   const digits = phone.replace(/\D/g, "");
-  if (digits.startsWith("256")) {
-    return digits.length === 12;
-  }
-  if (digits.startsWith("0")) {
-    return digits.length === 10;
-  }
-  return digits.length === 9;
+  return digits.length >= 6;
 }
-
-const urgencyLabels = {
-  urgent: "Urgent (within 2 weeks)",
-  standard: "Standard (1-2 months)",
-  planning: "Planning (3+ months)",
-} as const;
 
 export function buildWhatsAppMessage(data: InquiryFormData): string {
+  const fullPhone = data.phone
+    ? `${data.dialCode} ${data.phone}`
+    : "Not provided";
+
   const lines = [
-    "📋 NEW PROJECT INQUIRY - IvanZ Construction Website",
-    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+    "📋 NEW PROJECT INQUIRY — IvanZ Construction",
+    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
     "",
-    "👤 CONTACT",
-    `• Name: ${data.name}`,
-    `• Phone: ${data.phone}`,
+    "👤 CONTACT INFORMATION",
+    `• Name: ${data.name || "—"}`,
+    `• Phone: ${fullPhone}`,
+    `• Email: ${data.email || "N/A"}`,
+    `• Company: ${data.company || "N/A"}`,
+    `• Country: ${data.country || "—"}`,
+    "",
+    "🏗️ PROJECT DETAILS",
+    `• Service: ${data.service || "—"}`,
+    `• Location: ${data.location || "N/A"}`,
+    `• Scale: ${data.scale || "N/A"}`,
+    `• Budget: ${data.budget || "N/A"}`,
+    `• Urgency: ${data.urgency || "N/A"}`,
+    "",
+    "📝 NOTES",
+    data.notes || "None provided",
+    "",
+    `🌐 Sent via: ${siteConfig.url.replace(/^https?:\/\//, "")}`,
   ];
 
-  if (data.email) lines.push(`• Email: ${data.email}`);
-  if (data.company) lines.push(`• Company: ${data.company}`);
-  lines.push(`• Location: ${data.location}`);
-  lines.push("");
-  lines.push("🏗️ PROJECT");
-
-  if (data.service) {
-    const serviceLabel = data.service
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-    lines.push(`• Service: ${serviceLabel}`);
+  if (data.source) {
+    lines.splice(lines.length - 1, 0, `📣 Source: ${data.source}`);
   }
-  if (data.projectName) lines.push(`• Project: ${data.projectName}`);
-  if (data.siteLocation) lines.push(`• Site: ${data.siteLocation}`);
-  if (data.scale) lines.push(`• Scale: ${data.scale}`);
-  if (data.budget) lines.push(`• Budget: ${data.budget}`);
-  if (data.startDate) lines.push(`• Start: ${data.startDate}`);
-  lines.push(`• Urgency: ${urgencyLabels[data.urgency]}`);
-
-  if (data.notes) {
-    lines.push("");
-    lines.push("📝 NOTES");
-    lines.push(data.notes);
-  }
-
-  lines.push("");
-  if (data.source) lines.push(`📣 Source: ${data.source}`);
-  lines.push(`🌐 Via: ${siteConfig.url.replace(/^https?:\/\//, "")}`);
 
   return lines.join("\n");
 }
@@ -108,8 +70,25 @@ export function getWhatsAppDirectUrl(): string {
   return `https://wa.me/${siteConfig.whatsappPrimary}`;
 }
 
-export function getRequiredFieldCount(data: InquiryFormData): number {
-  const required = [data.name, data.phone, data.location, data.service];
-  return required.filter((field) => field && String(field).trim().length > 0)
-    .length;
+export function getDrawerProgressPercent(data: InquiryFormData): number {
+  let filled = 0;
+  const total = 7;
+  if (data.name.trim()) filled++;
+  if (data.phone.trim()) filled++;
+  if (data.country.trim()) filled++;
+  if (data.service.trim()) filled++;
+  if (data.location?.trim()) filled++;
+  if (data.budget?.trim()) filled++;
+  if (data.urgency?.trim()) filled++;
+  return Math.round((filled / total) * 100);
+}
+
+export function isDrawerReady(data: InquiryFormData): boolean {
+  return Boolean(
+    data.name.trim() &&
+      data.phone.trim() &&
+      isValidPhone(data.phone) &&
+      data.country.trim() &&
+      data.service.trim(),
+  );
 }

@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { faqItems } from "@/lib/data/faq";
+import { FaqWhatsAppLink } from "@/components/faq/FaqWhatsAppLink";
+import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { pageHeroImages } from "@/lib/data/images";
+import { faqItems } from "@/lib/data/faq";
 
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about IvanZ Construction civil engineering services in Eastern Uganda.",
+    "Frequently asked questions about IvanZ Construction civil engineering services across Africa.",
 };
 
 export default function FaqPage() {
   return (
     <>
-      <section className="bg-navy py-16 text-white md:py-20">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <h1 className="font-heading text-4xl font-bold md:text-5xl">FAQ</h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/80">
-            Common questions about our services, quotes, and project process.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="FAQ"
+        description="Common questions about our services, quotes, and project process."
+        image={pageHeroImages.faq}
+      />
 
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-4 md:px-6">
@@ -42,9 +41,7 @@ export default function FaqPage() {
 
           <p className="mt-10 text-center text-sm text-muted">
             Still have questions?{" "}
-            <Link href="/contact" className="font-semibold text-gold hover:underline">
-              Contact us on WhatsApp
-            </Link>
+            <FaqWhatsAppLink />
           </p>
         </div>
       </section>
