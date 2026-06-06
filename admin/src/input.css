@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-grey-light font-sans text-body antialiased;
+  }
+}
+
+@layer components {
+  .admin-card {
+    @apply rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm;
+  }
+
+  .admin-btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-gold px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gold/90 focus:outline-none focus:ring-2 focus:ring-gold/40 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .admin-btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-navy transition hover:bg-grey-light focus:outline-none focus:ring-2 focus:ring-navy/20;
+  }
+
+  .admin-input {
+    @apply w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-body placeholder:text-muted focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20;
+  }
+
+  .admin-label {
+    @apply mb-1.5 block text-sm font-medium text-navy;
+  }
+
+  .admin-sidebar-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-white/75 transition hover:bg-white/10 hover:text-white;
+  }
+
+  .admin-sidebar-link-active {
+    @apply bg-white/10 text-white;
+  }
+
+  .admin-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+}

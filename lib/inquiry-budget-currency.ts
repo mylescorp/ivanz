@@ -233,7 +233,7 @@ export function getBudgetOptionsForCurrency(currencyCode: string): BudgetOption[
 }
 
 export function budgetMatchesCurrency(
-  budget: string,
+  budget: string | undefined,
   currencyCode: string | undefined,
 ): boolean {
   if (!budget || budget === "Not Sure") return true;

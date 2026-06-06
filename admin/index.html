@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — IvanZ Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/app.css" />
+  </head>
+  <body data-require-convex="true">
+    <div
+      id="admin-error-banner"
+      class="hidden border-b border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-700"
+      role="alert"
+    ></div>
+
+    <div class="flex min-h-screen">
+      <aside class="hidden w-64 shrink-0 bg-navy text-white lg:flex lg:flex-col">
+        <div class="border-b border-white/10 px-5 py-6">
+          <p class="font-heading text-lg font-bold" data-site-name>
+            IvanZ Construction
+          </p>
+          <p class="text-xs text-white/60" data-site-label>Admin Panel</p>
+        </div>
+
+        <nav class="flex-1 space-y-1 px-3 py-4" aria-label="Main navigation">
+          <a class="admin-sidebar-link admin-sidebar-link-active" href="./index.html">
+            Dashboard
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner,manager">
+            Inquiries
+            <span class="admin-badge ml-auto bg-gold text-white">0</span>
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner,manager,editor">
+            Projects
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner,manager,editor">
+            Services
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner,manager,editor">
+            Team
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner,manager,editor">
+            Testimonials
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner,manager,editor">
+            Blog
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner,manager,editor">
+            Gallery
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner">
+            Users
+          </a>
+          <a class="admin-sidebar-link" href="#" data-role="owner">
+            Settings
+          </a>
+        </nav>
+
+        <div class="border-t border-white/10 px-5 py-4 text-xs text-white/50">
+          Phase 0 scaffold — auth in Phase 2
+        </div>
+      </aside>
+
+      <div class="flex min-w-0 flex-1 flex-col">
+        <header
+          class="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-4 md:px-6"
+        >
+          <div>
+            <h1 class="font-heading text-xl font-semibold text-navy">Dashboard</h1>
+            <p class="text-sm text-muted">Busia District, Uganda</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="admin-badge bg-navy/10 text-navy">Viewer</span>
+            <button class="admin-btn-secondary" type="button" disabled>
+              Sign out
+            </button>
+          </div>
+        </header>
+
+        <main class="flex-1 p-4 md:p-6">
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="admin-card">
+              <p class="text-sm text-muted">Total inquiries</p>
+              <p class="mt-2 font-heading text-3xl font-bold text-navy">—</p>
+            </div>
+            <div class="admin-card">
+              <p class="text-sm text-muted">New today</p>
+              <p class="mt-2 font-heading text-3xl font-bold text-navy">—</p>
+            </div>
+            <div class="admin-card">
+              <p class="text-sm text-muted">Published projects</p>
+              <p class="mt-2 font-heading text-3xl font-bold text-navy">—</p>
+            </div>
+            <div class="admin-card">
+              <p class="text-sm text-muted">Team members</p>
+              <p class="mt-2 font-heading text-3xl font-bold text-navy">—</p>
+            </div>
+          </div>
+
+          <div class="mt-6 admin-card">
+            <h2 class="font-heading text-lg font-semibold text-navy">
+              Getting started
+            </h2>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-muted">
+              <li>Create a Convex account and run <code>npx convex dev</code> at the project root.</li>
+              <li>Copy <code>admin/js/config.example.js</code> to <code>admin/js/config.js</code> with your Convex URL.</li>
+              <li>Deploy the schema shell with <code>npx convex deploy</code>.</li>
+              <li>Phase 2 wires Convex Auth — login buttons activate after that.</li>
+            </ol>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="./js/config.example.js"></script>
+    <script src="./js/config.js" onerror=""></script>
+    <script src="./js/convex-client.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>

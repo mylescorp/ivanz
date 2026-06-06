@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in — IvanZ Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/app.css" />
+  </head>
+  <body data-require-convex="true">
+    <div
+      id="admin-error-banner"
+      class="hidden border-b border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-700"
+      role="alert"
+    ></div>
+
+    <main class="flex min-h-screen items-center justify-center px-4 py-12">
+      <div class="w-full max-w-md">
+        <div class="mb-8 text-center">
+          <p class="font-heading text-2xl font-bold text-navy" data-site-name>
+            IvanZ Construction
+          </p>
+          <p class="mt-1 text-sm text-muted" data-site-label>Admin Panel</p>
+        </div>
+
+        <div class="admin-card shadow-panel">
+          <h1 class="font-heading text-xl font-semibold text-navy">Sign in</h1>
+          <p class="mt-2 text-sm text-muted">
+            Staff access only. New accounts require Owner approval before access
+            is granted.
+          </p>
+
+          <form class="mt-6 space-y-4" id="login-form" novalidate>
+            <div>
+              <label class="admin-label" for="email">Email</label>
+              <input
+                class="admin-input"
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="you@company.com"
+              />
+            </div>
+
+            <div>
+              <label class="admin-label" for="password">Password</label>
+              <input
+                class="admin-input"
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                placeholder="••••••••"
+              />
+            </div>
+
+            <button class="admin-btn-primary w-full" type="submit" disabled>
+              Sign in with email
+            </button>
+          </form>
+
+          <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-slate-200"></div>
+            </div>
+            <div class="relative flex justify-center text-xs uppercase">
+              <span class="bg-white px-2 text-muted">or</span>
+            </div>
+          </div>
+
+          <button class="admin-btn-secondary w-full" type="button" disabled>
+            Continue with Google
+          </button>
+
+          <p class="mt-6 text-center text-xs text-muted">
+            Authentication connects in Phase 2 (Convex Auth).
+          </p>
+        </div>
+
+        <p class="mt-6 text-center text-xs text-muted">
+          &copy; <span data-current-year></span>
+          <span data-site-name>IvanZ Construction</span>
+        </p>
+      </div>
+    </main>
+
+    <script src="./js/config.example.js"></script>
+    <script src="./js/config.js" onerror=""></script>
+    <script src="./js/convex-client.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
