@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tailwindcss -i ./src/input.css -o ./css/app.css --watch",
-    "build:css": "tailwindcss -i ./src/input.css -o ./css/app.css --minify",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./css/app.css --watch",
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./css/app.css --minify",
     "build": "npm run build:css"
   },
   "devDependencies": {
