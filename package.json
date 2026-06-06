@@ -12,7 +12,8 @@
     "convex:dev": "convex dev",
     "convex:deploy": "convex deploy",
     "admin:dev": "npm run dev --prefix admin",
-    "admin:build": "npm run build --prefix admin"
+    "admin:build": "npm run build --prefix admin",
+    "postinstall": "npm install --prefix admin --no-audit --no-fund"
   },
   "dependencies": {
     "@convex-dev/auth": "^0.0.93",
