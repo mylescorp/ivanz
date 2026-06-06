@@ -5,17 +5,20 @@ import { ConvexError } from "convex/values";
 import type { AppRole } from "./lib/rbac";
 import { now } from "./lib/rbac";
 
-const PRODUCTION_SITE_URL = "https://ivanz-five.vercel.app";
+const PRODUCTION_SITE_URL = "https://ivanz.mylescorptech.com";
+
+const ALLOWED_SITE_ORIGINS = [
+  PRODUCTION_SITE_URL,
+  "https://ivanz-five.vercel.app",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+] as const;
 
 export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
   providers: [Google, Password],
   callbacks: {
     async redirect({ redirectTo }) {
-      const allowed = [
-        PRODUCTION_SITE_URL,
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-      ];
+      const allowed = ALLOWED_SITE_ORIGINS;
       if (
         redirectTo.startsWith("/") ||
         allowed.some((origin) => redirectTo.startsWith(origin))

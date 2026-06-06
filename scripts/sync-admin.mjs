@@ -64,6 +64,7 @@ copyDir(source, target);
 const env = {
   ...loadEnvFile(join(root, ".env")),
   ...loadEnvFile(join(root, ".env.local")),
+  ...process.env,
 };
 syncAdminConfig(target, env);
 

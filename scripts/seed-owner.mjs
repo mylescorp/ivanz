@@ -11,8 +11,9 @@ if (!email || !password) {
 }
 
 const args = JSON.stringify(JSON.stringify({ email, password }));
+const prodFlag = process.env.CONVEX_SEED_PROD === "1" ? " --prod" : "";
 
-execSync(`npx convex run bootstrapSeed:seedOwner ${args}`, {
+execSync(`npx convex run bootstrapSeed:seedOwner ${args}${prodFlag}`, {
   cwd: process.cwd(),
   stdio: "inherit",
   shell: true,

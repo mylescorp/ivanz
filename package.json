@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "convex:dev": "convex dev",
-    "convex:deploy": "convex deploy",
+    "convex:deploy": "convex deploy --yes",
+    "convex:sync-prod-auth": "node scripts/sync-convex-prod-auth-env.mjs",
     "admin:dev": "npm run dev --prefix admin",
     "admin:build": "npm run build --prefix admin",
     "postinstall": "npm install --prefix admin --no-audit --no-fund"
