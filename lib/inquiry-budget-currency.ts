@@ -234,9 +234,10 @@ export function getBudgetOptionsForCurrency(currencyCode: string): BudgetOption[
 
 export function budgetMatchesCurrency(
   budget: string,
-  currencyCode: string,
+  currencyCode: string | undefined,
 ): boolean {
   if (!budget || budget === "Not Sure") return true;
+  if (!currencyCode) return true;
   const profile = currencyProfiles[currencyCode] ?? currencyProfiles.USD;
   return budget.includes(profile.code);
 }
