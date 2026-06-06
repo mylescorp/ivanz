@@ -110,7 +110,7 @@ export function WhatsAppInquiryModal({
 
   useEffect(() => {
     if (lastCurrencyRef.current !== currencyCode) {
-      if (!budgetMatchesCurrency(values.budget, currencyCode)) {
+      if (currencyCode && !budgetMatchesCurrency(values.budget, currencyCode)) {
         setValue("budget", "");
       }
       lastCurrencyRef.current = currencyCode;
